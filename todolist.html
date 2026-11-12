@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>To-Do List</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+
+        }
+
+        body {
+            margin: 0;
+            font-family: cursive;
+            background-color: rgb(58, 11, 58);
+
+            min-height: 100lvh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            background-color: rgb(211, 108, 151);
+            width: 450px;
+            padding: 30px;
+
+
+            border-radius: 15px;
+
+
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: black;
+        }
+
+        input {
+            width: 75%;
+            padding: 12px;
+
+
+            border-radius: 6px;
+
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: antiquewhite;
+        }
+
+        button {
+            padding: 12px 18px;
+
+            border: none;
+            border-radius: 6px;
+
+            background-color: black color;
+
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background-color: gray;
+        }
+
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 25px;
+        }
+
+        li {
+            background-color: white;
+
+            padding: 12px;
+            margin-bottom: 10px;
+
+            border-radius: 6px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            cursor: pointer;
+        }
+
+        li:hover {
+            background-color: white;
+        }
+
+        li button {
+            background-color: rgb(104, 16, 16);
+            padding: 7px 12px;
+            font-family: cursive;
+        }
+
+        li button:hover {
+            background-color: maroon;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="box">
+
+        <h2>My To-Do List</h2>
+
+        <input type="text" id="task" placeholder="Enter a task">
+
+        <button onclick="addTask()">Add</button>
+
+        <ul id="list"></ul>
+
+    </div>
+
+
+    <script>
+
+        function addTask() {
+
+            let task = document.getElementById("task").value;
+
+            if (task == "") {
+                alert("Please enter a task");
+                return;
+            }
+                
+            let li = document.createElement("li");
+
+            li.innerText = task;
+
+            li.onclick = function () {
+                li.style.textDecoration = "line-through";
+            };
+
+            let deleteButton = document.createElement("button");
+
+            deleteButton.innerText = "Delete";
+
+            deleteButton.onclick = function () {
+                event.stopPropagation();
+                li.remove();
+            };
+
+            li.appendChild(deleteButton);
+
+            document.getElementById("list").appendChild(li);
+
+            document.getElementById("task").value = "";
+        }
+
+    </script>
+
+</body>
+
+</html>
