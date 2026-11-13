@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Theme Toggle</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: cursive;
+
+            background-color: #f4f6f8;
+            color: #222;
+
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+
+        }
+
+
+        .container {
+            background-color: white;
+            width: 350px;
+            padding: 40px;
+            text-align: center;
+
+            border-radius: 15px;
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+            transition: 0.3s;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-family: cursive;
+
+            background-color: #222;
+            color: white;
+
+            font-size: 16px;
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+
+        body.dark {
+            background-color: #121212;
+            color: white;
+        }
+
+        body.dark .container {
+            background-color: #1e1e1e;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+        }
+
+        body.dark p {
+            color: #bbb;
+        }
+
+        body.dark button {
+            background-color: white;
+            color: #222;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Change Theme</h1>
+
+        <p>Switch between Light Mode and Dark Mode</p>
+
+        <button onclick="changeTheme()">
+            Dark/Light
+
+        </button>
+
+    </div>
+
+    <script>
+
+        function changeTheme() {
+            document.body.classList.toggle("dark");
+        }
+
+    </script>
+
+</body>
+
+</html>

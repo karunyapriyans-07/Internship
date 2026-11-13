@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDENT REGISTRATION</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightblue;
+            margin: 0;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: darkblue;
+        }
+
+        form {
+            background-color: white;
+            width: 400px;
+            margin: 30px auto;
+            padding: 25px;
+            border: 1px solid black;
+        }
+
+        label {
+            font-family: cursive;
+        }
+
+        input,
+        select {
+            padding: 8px;
+            width: 220px;
+        }
+
+        button {
+            padding: 8px 20px;
+            background-color: darkblue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: blue;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <h1>STUDENT REGISTRATION</h1>
+
+    <form onsubmit="validateForm(event)">
+
+        <label for="username">
+            USERNAME:
+        </label>
+
+        <input type="text" id="username" placeholder="username">
+
+        <br><br>
+
+
+        <label for="password">
+            PASSWORD:
+        </label>
+
+        <input type="password" id="password" placeholder="password">
+
+        <br><br>
+
+
+        <label for="email">
+            EMAIL:
+        </label>
+
+        <input type="text" id="email" placeholder="email">
+
+        <br><br>
+
+
+        <label for="phone">
+            PHONE NUMBER:
+        </label>
+
+        <input type="tel" id="phone" placeholder="phone number">
+
+        <br><br>
+
+
+        <label for="gender">
+            GENDER:
+        </label>
+
+        <select id="gender">
+
+            <option value="">gender</option>
+
+            <option value="male">
+                MALE
+            </option>
+
+            <option value="female">
+                FEMALE
+            </option>
+
+        </select>br><br>
+
+<label for="course">
+            COURSE:
+        </label>
+
+        <select id="course">
+         <option value="">course</option>
+         <option value="it">
+                IT
+            </option>
+         <option value="cse">
+                CSE
+            </option>
+
+            <option value="mech">
+                MECH
+            </option>
+
+            <option value="ece">
+                ECE
+            </option>
+
+            <option value="eee">
+                EEE
+            </option>
+
+        </select>
+
+        <br><br>
+
+
+        <button type="submit">
+            SUBMIT
+        </button>
+
+    </form>
+
+
+    <script>
+
+        function validateForm(event) {
+
+            event.preventDefault();
+
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+            let email = document.getElementById("email").value;
+            let phone = document.getElementById("phone").value;
+            let gender = document.getElementById("gender").value;
+            let course = document.getElementById("course").value;
+
+
+
+
+            if (username == "") {
+                alert("Please enter your username");
+                return;
+            }
+
+            if (password == "") {
+                alert("Please enter your password");
+                return;
+            }
+
+            if (email == "") {
+                alert("Please enter your email");
+                return;
+            }
+
+            if (phone == "") {
+                alert("Please enter your phone number");
+                return;
+            }
+
+            if (gender == "") {
+                alert("Please select your gender");
+                return;
+            }
+
+            if (course == "") {
+                alert("Please select your course");
+                return;
+            }
+
+
+
+
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email");
+                return;
+            }
+
+
+
+
+            let phonePattern = /^[6-9][0-9]{9}$/;
+
+            if (!phonePattern.test(phone)) {
+                alert("Please enter a valid 10 digit phone number");
+                return;
+            }
+
+
+            alert("Registration successful!");
+
+        }
+
+    </script>
+
+</body>
+
+</html>

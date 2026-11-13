@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>To-Do List</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: cursive;
+            background-color: rgb(189, 135, 189);
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            background-color: rgb(194, 172, 181);
+            width: 450px;
+            padding: 30px;
+
+            border-radius: 15px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: black;
+        }
+
+        input {
+            width: 75%;
+            padding: 12px;
+
+            border-radius: 6px;
+
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: antiquewhite;
+        }
+
+        button {
+            padding: 12px 18px;
+
+            border: none;
+            border-radius: 6px;
+
+            background-color: black;
+            color: white;
+
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background-color: gray;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 25px;
+        }
+
+        li {
+            background-color: white;
+
+            padding: 12px;
+            margin-bottom: 10px;
+
+            border-radius: 6px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            cursor: pointer;
+        }
+
+        li:hover {
+            background-color: white;
+        }
+
+        li button {
+            background-color: rgb(104, 16, 16);
+            padding: 7px 12px;
+            font-family: cursive;
+        }
+
+        li button:hover {
+            background-color: maroon;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="box">
+
+        <h2>My To-Do List</h2>
+
+        <input type="text" id="task" placeholder="Enter a task">
+
+        <button onclick="addTask()">Add</button>
+
+        <ul id="list"></ul>
+
+    </div>
+
+
+    <script>
+
+        let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+        tasks = tasks.map(function (task) {
+
+            if (typeof task === "string") {
+
+                return {
+                    text: task,
+                    completed: false
+                };
+
+            }
+
+            return task;
+
+        });
+
+
+
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+
+
+
+        displayTasks();
+
+
+        function addTask() {
+
+            let task = document.getElementById("task").value;
+
+            if (task == "") {
+
+                alert("Please enter a task");
+
+                return;
+            }
+
+
+            tasks.push({
+                text: task,
+                completed: false
+            });
+
+
+
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+
+
+
+            document.getElementById("task").value = "";
+
+
+
+            displayTasks();
+        }
+
+
+        function displayTasks() {
+
+            let list = document.getElementById("list");
+
+
+            list.innerHTML = "";
+
+
+            tasks.forEach(function (task, index) {
+
+                let li = document.createElement("li");
+                li.innerText = task.text;
+
+
+
+                if (task.completed) {
+
+                    li.style.textDecoration = "line-through";
+
+                }
+
+
+                li.onclick = function () {
+
+                    task.completed = !task.completed;
+
+                    localStorage.setItem(
+                        "tasks",
+                        JSON.stringify(tasks)
+                    );
+
+                    displayTasks();
+
+                };
+
+
+
+                let deleteButton =
+                    document.createElement("button");
+
+                deleteButton.innerText = "Delete";
+
+
+
+                deleteButton.onclick = function (event) {
+
+
+                    event.stopPropagation();
+
+
+
+                    tasks.splice(index, 1);
+
+
+
+                    localStorage.setItem(
+                        "tasks",
+                        JSON.stringify(tasks)
+                    );
+
+
+
+                    displayTasks();
+
+                };
+
+
+
+                li.appendChild(deleteButton);
+
+
+
+                list.appendChild(li);
+
+            });
+
+        }
+
+    </script>
+
+</body>
+
+</html>

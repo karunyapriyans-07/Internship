@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "name": "Karunya Priya",
+        "username": "karunya",
+        "email": "karunya@gmail.com",
+        "phone": "9876543210",
+        "address": {
+            "city": "Chennai"
+        }
+    },
+    {
+        "id": 2,
+        "name": "Ananya",
+        "username": "ananya123",
+        "email": "ananya@gmail.com",
+        "phone": "9876543211",
+        "address": {
+            "city": "Bangalore"
+        }
+    },
+    {
+        "id": 3,
+        "name": "Rahul",
+        "username": "rahul123",
+        "email": "rahul@gmail.com",
+        "phone": "9876543212",
+        "address": {
+            "city": "Coimbatore"
+        }
+    },
+    {
+        "id": 4,
+        "name": "Priya",
+        "username": "priya123",
+        "email": "priya@gmail.com",
+        "phone": "9876543213",
+        "address": {
+            "city": "Madurai"
+        }
+    },
+    {
+        "id": 5,
+        "name": "Harish",
+        "username": "harish123",
+        "email": "harish@gmail.com",
+        "phone": "9876543214",
+        "address": {
+            "city": "Chennai"
+        }
+    },
+    {
+        "id": 6,
+        "name": "Divya",
+        "username": "divya123",
+        "email": "divya@gmail.com",
+        "phone": "9876543215",
+        "address": {
+            "city": "Trichy"
+        }
+    }
+]

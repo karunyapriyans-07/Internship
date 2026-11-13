@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User List</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f0ff;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #5a3d8e;
+            margin-bottom: 20px;
+        }
+
+        #search {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 1px solid #bbb;
+            border-radius: 7px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        #search:focus {
+            outline: none;
+            border-color: #7b55b5;
+        }
+
+        #message {
+            text-align: center;
+            color: #666;
+            margin: 15px;
+        }
+
+        .user {
+            background-color: #faf8ff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 12px;
+        }
+
+        .user h3 {
+            margin-top: 0;
+            color: #4d3278;
+        }
+
+        .user p {
+            margin: 6px 0;
+            color: #444;
+        }
+
+        .user strong {
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>User List</h1>
+
+        <input type="text" id="search" placeholder="Search users by name...">
+
+        <p id="message">Loading users...</p>
+
+        <div id="userList"></div>
+
+    </div>
+
+
+    <script>
+
+        let users = [];
+
+        // Load users from users.json
+        fetch("users.json")
+            .then(function (response) {
+
+                if (!response.ok) {
+                    throw new Error("Could not load users.json");
+                }
+
+                return response.json();
+            })
+
+            .then(function (data) {
+
+                users = data;
+
+                document.getElementById("message").innerText =
+                    users.length + " users loaded";
+
+                displayUsers(users);
+            })
+
+            .catch(function (error) {
+
+                console.log(error);
+
+                document.getElementById("message").innerText =
+                    "Failed to load users.";
+            });
+
+
+        // Display users
+        function displayUsers(userArray) {
+
+            let userList = document.getElementById("userList");
+
+            userList.innerHTML = "";
+
+            if (userArray.length === 0) {
+
+                document.getElementById("message").innerText =
+                    "No users found.";
+
+                return;
+            }
+
+            document.getElementById("message").innerText =
+                userArray.length + " user(s) found";
+
+
+            userArray.forEach(function (user) {
+
+                let div = document.createElement("div");
+
+                div.className = "user";
+
+                div.innerHTML = `
+                    <h3>${user.name}</h3>
+
+                    <p>
+                        <strong>Username:</strong>
+                        ${user.username}
+                    </p>
+
+                    <p>
+                        <strong>Email:</strong>
+                        ${user.email}
+                    </p>
+
+                    <p>
+                        <strong>Phone:</strong>
+                        ${user.phone}
+                    </p>
+
+                    <p>
+                        <strong>City:</strong>
+                        ${user.address.city}
+                    </p>
+                `;
+
+                userList.appendChild(div);
+            });
+        }
+
+
+        // Search users
+        document.getElementById("search")
+            .addEventListener("input", function () {
+
+                let searchText = this.value.toLowerCase();
+
+                let filteredUsers = users.filter(function (user) {
+
+                    return user.name
+                        .toLowerCase()
+                        .includes(searchText);
+
+                });
+
+                displayUsers(filteredUsers);
+            });
+
+    </script>
+
+</body>
+
+</html>
