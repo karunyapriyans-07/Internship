@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Random Joke App</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: cursive;
+            background-color: burlywood;
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            width: 450px;
+            padding: 30px;
+
+            background-color: beige;
+
+            border-radius: 12px;
+
+            text-align: center;
+
+            box-shadow: 0 0 10px gray;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+        }
+
+        #joke {
+            font-size: 17px;
+            line-height: 1.6;
+
+            min-height: 60px;
+        }
+
+        button {
+            padding: 12px 20px;
+
+            border: none;
+            border-radius: 6px;
+
+            background-color: black;
+            color: white;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: gray;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="box">
+
+        <h2>Random Joke</h2>
+
+        <p id="joke">
+            Click the button to get a joke.
+        </p>
+
+        <button onclick="getJoke()">
+            Generate a Joke
+        </button>
+
+    </div>
+
+
+    <script>
+
+        function getJoke() {
+
+            let joke = document.getElementById("joke");
+
+            joke.innerText = "Loading...";
+
+
+            fetch("https://v2.jokeapi.dev/joke/Any?safe-mode")
+
+                .then(function (response) {
+
+                    if (!response.ok) {
+                        throw new Error("API request failed");
+                    }
+
+                    return response.json();
+
+                })
+
+                .then(function (data) {
+
+                    if (data.type === "single") {
+
+                        joke.innerText = data.joke;
+
+                    } else {
+
+                        joke.innerText =
+                            data.setup + " " + data.delivery;
+
+                    }
+
+                })
+
+                .catch(function (error) {
+
+                    console.log(error);
+
+                    joke.innerText =
+                        "Failed to load joke.";
+
+                });
+        }
+
+    </script>
+
+</body>
+
+</html>
