@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Karunya Priya",
+        "department": "Information Technology",
+        "college": "Chennai Institute of Technology",
+        "email": "karunya@example.com"
+    },
+    {
+        "id": 2,
+        "name": "Gautam",
+        "department": "Information Technology",
+        "college": "Chennai Institute of Technology",
+        "email": "krgautam@gmail.com"
+    },
+    {
+        "id": 3,
+        "name": "Farah",
+        "department": "Information Technology",
+        "college": "Chennai Institute of Technology",
+        "email": "farah@example.com"
+    }
+]
