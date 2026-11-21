@@ -29,7 +29,7 @@ def view_students():
     if len(students) == 0:
         print("\nNo students available.")
     else:
-        print("\n--- STUDENT LIST ----")
+        print("\n---STUDENT LIST----")
 
         for student in students:
             student.display()
@@ -55,7 +55,7 @@ def delete_student():
     roll_no = input("Enter roll number to delete: ")
 
     for student in students:
-        if student.roll_no == roll_no:
+        if student.roll_no==roll_no:
             students.remove(student)
             print("\nStudent deleted successfully!")
             return

@@ -3,7 +3,6 @@ class BankAccount:
         self.name = name
         self.balance = balance
 
-    # Deposit money
     def deposit(self, amount):
         if amount <= 0:
             print("Invalid amount. Deposit must be greater than 0.")
@@ -12,7 +11,6 @@ class BankAccount:
             print("Deposit successful.")
             print("Amount deposited:", amount)
 
-    # Withdraw money
     def withdraw(self, amount):
         if amount <= 0:
             print("Invalid amount. Withdrawal must be greater than 0.")
@@ -23,12 +21,9 @@ class BankAccount:
             print("Withdrawal successful.")
             print("Amount withdrawn:", amount)
 
-    # Check balance
     def check_balance(self):
         print("Current balance:", self.balance)
 
-
-# Create account
 name = input("Enter account holder name: ")
 
 account = BankAccount(name)
@@ -36,7 +31,6 @@ account = BankAccount(name)
 print("\nAccount created successfully!")
 print("Account holder:", account.name)
 
-# Menu
 while True:
     print("\n===== BANK ACCOUNT =====")
     print("1. Deposit")

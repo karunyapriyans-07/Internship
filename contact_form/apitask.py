@@ -18,11 +18,6 @@ notes = [
 def home():
     return jsonify(notes)
   
-
-
-    
-
-
 @app.route("/notes/<int:id>", methods=["GET"])
 def get_note(id):
     for note in notes:
@@ -32,7 +27,6 @@ def get_note(id):
     return jsonify({"error": "Note not found"}), 404
 
 
-# POST - Add a new note
 @app.route("/notes", methods=["POST"])
 def add_note():
     data = request.get_json()
